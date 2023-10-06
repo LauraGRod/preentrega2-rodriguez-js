@@ -50,24 +50,17 @@ function mostrarPrendasEnDOM(prendas) {
     });
 }
 
-const selectTipo = document.querySelector('#filtro-prenda');
-const selectColor = document.querySelector('#filtro-color');
-const selectTalle = document.querySelector('#filtro-talle');
+const selectTipo = document.querySelector('#prenda');
+const selectColor = document.querySelector('#color');
+const selectTalle = document.querySelector('#talle');
 
 // Manejar eventos de cambio en los selectores
 selectTipo.addEventListener('change', mostrarPrendasFiltradas);
 selectColor.addEventListener('change', mostrarPrendasFiltradas);
 selectTalle.addEventListener('change', mostrarPrendasFiltradas);
 
-// // Función para mostrar las prendas filtradas en el DOM
-// function mostrarPrendasFiltradas() {
-//     const tipoSeleccionado = selectTipo.value;
-//     const prendasFiltradas = prendas.filter(prenda => prenda.tipo === tipoSeleccionado);
-
-//     mostrarPrendasEnDOM(prendasFiltradas);
-// }
-
 // Función para mostrar las prendas filtradas por tipo, color y talle en el DOM
+
 function mostrarPrendasFiltradas() {
     const tipoSeleccionado = selectTipo.value;
     const colorSeleccionado = selectColor.value;

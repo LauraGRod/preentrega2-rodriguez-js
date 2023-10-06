@@ -15,7 +15,7 @@ const prendas = [
         imagen: '../assets/img/tapado-beige-foto.png',
         tipo: 'tapados',
         color: 'beige',
-        talle: ['M', 'L'],
+        talle: ['m', 'l'],
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ const prendas = [
         imagen: '../assets/img/campera-peluche-foto.png',
         tipo: 'camperas',
         color: 'blanco',
-        talle: ['S', 'L'],
+        talle: ['s', 'l'],
     },
     {
         id: 4,
@@ -33,7 +33,7 @@ const prendas = [
         imagen: '../assets/img/jean-desgastado-foto.png',
         tipo: 'jeans',
         color: 'azul',
-        talle: ['S', 'M'],
+        talle: ['s', 'm'],
     },
     {
         id: 5,
@@ -51,6 +51,6 @@ const prendas = [
         imagen: '../assets/img/jean-blanco-foto.png',
         tipo: 'jeans',
         color: 'blanco',
-        talle: ['M', 'L'],
+        talle: ['m', 'l'],
     }
 ];
