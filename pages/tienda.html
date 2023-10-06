@@ -16,6 +16,8 @@
         <link rel="shortcut icon" href="../assets/img/icono-vestido.ico" type="image/x-icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/style.css">
+        <script src="../prendas.js" defer></script>
+        <script src="../main.js" defer></script>
     </head>
     <body>
         <!-- Empieza el HEADER -->
@@ -97,23 +99,28 @@
                         </select> 
                     </div>
                     <div class="filtros1-b">
-                        <select class="select-filtros" name="prenda">
+                        <select class="select-filtros" id="filtro-prenda" name="prenda">
                             <option value="prenda" selected disabled>Prenda</option>
                             <option value="tapados">Tapados</option>
                             <option value="jeans">Jeans</option>
-                            <option value="sweaters">Sweaters</option>
+                            <option value="camperas">Camperas</option>
+                            <option value="calzado">Calzado</option>
+                            <option value="accesorios">Accesorios</option>
                         </select>
-                        <select class="select-filtros" name="color">
-                            <option value="prenda" selected disabled>Color</option>
+                        <select class="select-filtros" id="filtro-color" name="color">
+                            <option value="color" selected disabled>Color</option>
                             <option value="blanco">Blanco</option>
                             <option value="beige">Beige</option>
-                            <option value="rosa">Rosa</option>
+                            <option value="azul">Azul</option>
+                            <option value="negro">Negro</option>
+                            <option value="cafe">Café</option>
                         </select>
-                        <select class="select-filtros" name="talle">
-                            <option value="prenda" selected disabled>Talle</option>
+                        <select class="select-filtros" id="filtro-talle" name="talle">
+                            <option value="talle" selected disabled>Talle</option>
                             <option value="talle-s">S</option>
                             <option value="talle-m">M</option>
                             <option value="talle-l">L</option>
+                            <option value="talle-unico">Único</option>
                         </select>
                     </div>
                 </div>

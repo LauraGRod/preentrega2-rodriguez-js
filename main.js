@@ -1,126 +1,92 @@
-alert("¡Bienvenido a Atelier!")
-
-let compras = [];
-let totalCompras = 0;
-
-const elegirPrenda = () => {
-    let continuarCompra = false;
-
-    do {
-        let prenda = '';
-        let cantidad = 0;
-        let talle = '';
-        let color = '';
-        let precio = 0;
-        let subtotal = 0;
-
-        prenda = prompt('¿Qué prenda le gustaría comprar: tapado, jean, sweater?').toUpperCase();
-
-        switch (prenda) {
-            case 'TAPADO':
-                precio = 12000;
-                break;
-            case 'JEAN':
-                precio = 8000;
-                break;
-            case 'SWEATER':
-                precio = 6000;
-                break;
-            default:
-                alert('Ingrese una prenda disponible');
-                continue;
-        
-          while (prenda !== 'TAPADO' && prenda !== 'JEAN' && prenda !== 'SWEATER') {
-            prenda = prompt('Ingrese una prenda disponible: tapado, jean o sweater.').toUpperCase();
-          }
-        }
-        console.log(prenda)
-
-        talle = prompt('¿En qué talle: S, M o L?').toUpperCase();
-
-        switch (talle) {
-            case 'S':
-            case 'M':
-            case 'L':
-                break;
-            default:
-                alert('Ingrese un talle disponible');
-                continue;
-
-          while (talle !== 'S' && talle !== 'M' && talle !== 'L') {
-            talle = prompt('Ingrese un talle disponible: S, M o L.').toUpperCase();
-          }
-        }
-        console.log(talle)
-
-        color = prompt('¿De qué color: blanco, azul o beige?').toUpperCase();
-
-        switch (color) {
-            case 'BLANCO':
-            case 'AZUL':
-            case 'BEIGE':
-                break;
-            default:
-                alert('Ingrese un color disponible');
-                continue;
-
-          while (color !== 'BLANCO' && color !== 'AZUL' && color !== 'BEIGE') {
-            color = prompt('Ingrese un color disponible: blanco, azul o beige.').toUpperCase();
-          }
-        }
-        console.log(color)
-
-        cantidad = Number(prompt('¿Cuántos desea comprar?'));
-
-        if (isNaN(cantidad)) {
-            alert('Ingrese un número correcto');
-            continue;
-        }
-
-        subtotal = precio * cantidad;
-        totalCompras += subtotal;
-
-        console.log(totalCompras)
-
-        const compra = {
-            prenda: prenda,
-            talle: talle,
-            color: color,
-            cantidad: cantidad,
-            subtotal: subtotal
-        };
-
-        compras.push(compra);
-
-        continuarCompra = confirm('¿Le gustaría agregar algo más a su compra?');
-
-    } while (continuarCompra);
-
-    return totalCompras;
+function ordenarPorMayorPrecio(prendas) {
+    return prendas.slice().sort((a, b) => b.precio - a.precio);
 }
 
-const aplicarDescuento = (totalCompras) => {
-    let metodoPago = '';
-    metodoPago = prompt('Seleccione su método de pago: efectivo o tarjeta').toUpperCase();
-    const descuento = 0.80;
+function ordenarPorMenorPrecio(prendas) {
+    return prendas.slice().sort((a, b) => a.precio - b.precio);
+}
 
-    if (metodoPago === 'EFECTIVO') {
-        return totalCompras * descuento;
-    } else if (metodoPago === 'TARJETA') {
-        return totalCompras;
-    } else {
-        alert('Seleccione un método de pago válido');
-        return 0;
+function ordenarPorMasReciente(prendas) {
+    return prendas.slice().sort((a, b) => b.id - a.id);
+}
+
+const selectOrdenar = document.querySelector('.select-ordenar');
+
+// Manejar el evento de cambio en el select
+selectOrdenar.addEventListener('change', function() {
+    const valorSeleccionado = selectOrdenar.value;
+    let prendasOrdenadas = [];
+
+    if (valorSeleccionado === 'mayor-precio') {
+        prendasOrdenadas = ordenarPorMayorPrecio(prendas);
+    } else if (valorSeleccionado === 'menor-precio') {
+        prendasOrdenadas = ordenarPorMenorPrecio(prendas);
+    } else if (valorSeleccionado === 'mas-reciente') {
+        prendasOrdenadas = ordenarPorMasReciente(prendas);
     }
+
+    mostrarPrendasEnDOM(prendasOrdenadas);
+});
+
+// Función para mostrar las prendas en el DOM
+function mostrarPrendasEnDOM(prendas) {
+    const contenedorPrendas = document.querySelector('.tienda-completa');
+    contenedorPrendas.innerHTML = ''; // Vacía el contenedor
+
+    prendas.forEach(prenda => {
+        const divPrenda = document.createElement('div');
+        divPrenda.className = 'prenda';
+
+        divPrenda.innerHTML = `
+            <img class="imgs-tienda img-fluid" src="${prenda.imagen}" alt="${prenda.nombre}">
+            <div class="tienda-nombreyprecios">
+                <figcaption>${prenda.nombre}</figcaption>
+                <figcaption>${prenda.precio}$</figcaption>
+            </div>
+        `;
+
+        contenedorPrendas.appendChild(divPrenda);
+    });
 }
 
-const compraFinal = (compras, precioFinal) => {
-    alert('Detalle de sus compras:\n\n' + compras.map(compra => `${compra.cantidad} ${compra.prenda} talle ${compra.talle} de color ${compra.color} - Subtotal: $${compra.subtotal}`).join('\n') + '\n\nEl valor total de todas sus compras es: $' + precioFinal);
+function ordenarPorColor(prendas, color) {
+    console.log('Filtrando por color:', color);
+    return prendas.filter(prenda => prenda.color.toLowerCase() === color.toLowerCase());
 }
 
-totalCompras = elegirPrenda();
+function ordenarPorTipo(prendas, tipo) {
+    return prendas.filter(prenda => prenda.tipo.toLowerCase() === tipo.toLowerCase());
+}
 
-const precioFinal = aplicarDescuento(totalCompras);
+function ordenarPorTalle(prendas, talle) {
+    return prendas.filter(prenda => prenda.talle.includes(talle.toLowerCase()));
+}
 
-compraFinal(compras, precioFinal);
+const selectTipo = document.querySelector('#filtro-prenda');
+const selectColor = document.querySelector('#filtro-color');
+const selectTalle = document.querySelector('#filtro-talle');
 
+// Mostrar las prendas filtradas en el DOM
+function mostrarPrendasFiltradas() {
+    console.log('Mostrando prendas filtradas');
+    let prendasFiltradas = [...prendas];
+
+    if (selectTipo.value !== 'prenda') {
+        prendasFiltradas = ordenarPorTipo(prendasFiltradas, selectTipo.value);
+    }
+
+    if (selectColor.value !== 'prenda') {
+        prendasFiltradas = ordenarPorColor(prendasFiltradas, selectColor.value);
+    }
+
+    if (selectTalle.value !== 'prenda') {
+        prendasFiltradas = ordenarPorTalle(prendasFiltradas, selectTalle.value);
+    }
+
+    mostrarPrendasEnDOM(prendasFiltradas);
+}
+
+// Manejar eventos de cambio en los selectores
+selectTipo.addEventListener('change', mostrarPrendasFiltradas);
+selectColor.addEventListener('change', mostrarPrendasFiltradas);
+selectTalle.addEventListener('change', mostrarPrendasFiltradas);
