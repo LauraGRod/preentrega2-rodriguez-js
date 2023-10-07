@@ -49,12 +49,11 @@ function mostrarPrendasEnDOM(prendas) {
         </div>
         `;
 
-        // Agrega evento de mouseover al div de prenda
+        // Evento mouseover mouseout para boton compra
         divPrenda.addEventListener('mouseover', function() {
             divPrenda.querySelector('.btn-comprar').style.display = 'block';
         });
 
-        // Agrega evento de mouseout al div de prenda para ocultar el botón "Comprar"
         divPrenda.addEventListener('mouseout', function() {
             divPrenda.querySelector('.btn-comprar').style.display = 'none';
         });
