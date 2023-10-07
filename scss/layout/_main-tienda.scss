@@ -56,3 +56,24 @@
     align-items: center;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
+
+.contenedorImagen{
+    position: relative;
+    display: inline-block;
+}
+
+.btn-comprar{
+    position: absolute;
+    width: 4.6875rem;
+    height: 2.1875rem;
+    border: 0;
+    border-radius: .3125rem;
+    background-color: whitesmoke;
+    padding-top: .3125rem;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    bottom: .625rem;
+    right: .625rem;
+}

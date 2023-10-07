@@ -39,40 +39,50 @@ function mostrarPrendasEnDOM(prendas) {
         divPrenda.className = 'prenda';
 
         divPrenda.innerHTML = `
-            <img class="imgs-tienda img-fluid" src="${prenda.imagen}" alt="${prenda.nombre}">
-            <div class="tienda-nombreyprecios">
-                <figcaption>${prenda.nombre}</figcaption>
-                <figcaption>${prenda.precio}$</figcaption>
-            </div>
+        <div class="contenedorImagen"> 
+        <img class="imgs-tienda img-fluid" src="${prenda.imagen}" alt="${prenda.nombre}">
+        <button class="btn-comprar overlay">Comprar</button>
+        </div>
+        <div class="tienda-nombreyprecios">
+            <figcaption>${prenda.nombre}</figcaption>
+            <figcaption>${prenda.precio}$</figcaption>
+        </div>
         `;
+
+        // Agrega evento de mouseover al div de prenda
+        divPrenda.addEventListener('mouseover', function() {
+            divPrenda.querySelector('.btn-comprar').style.display = 'block';
+        });
+
+        // Agrega evento de mouseout al div de prenda para ocultar el botón "Comprar"
+        divPrenda.addEventListener('mouseout', function() {
+            divPrenda.querySelector('.btn-comprar').style.display = 'none';
+        });
 
         contenedorPrendas.appendChild(divPrenda);
     });
 }
 
+// Filtra las prendas por tipo, color y talle
+
 const selectTipo = document.querySelector('#prenda');
 const selectColor = document.querySelector('#color');
 const selectTalle = document.querySelector('#talle');
 
-// Manejar eventos de cambio en los selectores
 selectTipo.addEventListener('change', mostrarPrendasFiltradas);
 selectColor.addEventListener('change', mostrarPrendasFiltradas);
 selectTalle.addEventListener('change', mostrarPrendasFiltradas);
-
-// Función para mostrar las prendas filtradas por tipo, color y talle en el DOM
 
 function mostrarPrendasFiltradas() {
     const tipoSeleccionado = selectTipo.value;
     const colorSeleccionado = selectColor.value;
     const talleSeleccionado = selectTalle.value;
 
-    // Filtra las prendas por tipo, color y talle seleccionados
     const prendasFiltradas = prendas.filter(prenda => 
         (tipoSeleccionado === 'prenda' || prenda.tipo === tipoSeleccionado) &&
         (colorSeleccionado === 'color' || prenda.color === colorSeleccionado) &&
         (talleSeleccionado === 'talle' || prenda.talle.includes(talleSeleccionado))
     );
 
-    // Llama a la función para mostrar prendas en el DOM
     mostrarPrendasEnDOM(prendasFiltradas);
 }
