@@ -1,4 +1,3 @@
-// Obtén referencias a los elementos del DOM
 const nombreInput = document.getElementById('nombre');
 const apellidoInput = document.getElementById('apellido');
 const emailInput = document.getElementById('email');
@@ -6,9 +5,9 @@ const numPedidoInput = document.getElementById('num-pedido');
 const mensajeInput = document.getElementById('mensaje');
 const enviarBtn = document.getElementById('enviarBtn');
 
-// Agrega un evento de clic al botón "Enviar"
+// Evento boton enviar
 enviarBtn.addEventListener('click', function(event) {
-    event.preventDefault(); // Evita que el formulario se envíe
+    event.preventDefault();
 
     const nombre = nombreInput.value;
     const apellido = apellidoInput.value;
@@ -16,7 +15,6 @@ enviarBtn.addEventListener('click', function(event) {
     const numPedido = numPedidoInput.value;
     const mensaje = mensajeInput.value;
 
-    // Verifica si se ingresaron datos
     if (nombre && apellido && email && numPedido && mensaje) {
         Swal.fire({
             icon: 'success',

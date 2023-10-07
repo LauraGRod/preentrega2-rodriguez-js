@@ -1,3 +1,5 @@
+// Filtra las prendas por orden
+
 function ordenarPorMayorPrecio(prendas) {
     return prendas.slice().sort((a, b) => b.precio - a.precio);
 }
@@ -12,7 +14,7 @@ function ordenarPorMasReciente(prendas) {
 
 const selectOrdenar = document.querySelector('.select-ordenar');
 
-// Manejar el evento de cambio en el select
+// Evento change en select
 selectOrdenar.addEventListener('change', function() {
     const valorSeleccionado = selectOrdenar.value;
     let prendasOrdenadas = [];
@@ -30,7 +32,7 @@ selectOrdenar.addEventListener('change', function() {
 
 const contenedorPrendas = document.querySelector('.tienda-completa');
 
-// Función para mostrar las prendas en el DOM
+// Mostrar las prendas en el DOM
 function mostrarPrendasEnDOM(prendas) {
     contenedorPrendas.innerHTML = ''; // Vacía el contenedor
 
