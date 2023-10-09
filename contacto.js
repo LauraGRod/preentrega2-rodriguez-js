@@ -44,3 +44,18 @@ enviarBtn.addEventListener('click', function(event) {
         });
     }
 });
+
+// Obtener los valores del localStorage
+const datosGuardados = localStorage.getItem('contacto');
+
+if (datosGuardados) {
+    const contactoGuardado = JSON.parse(datosGuardados);
+    
+    nombreInput.value = contactoGuardado.nombre;
+    apellidoInput.value = contactoGuardado.apellido;
+    emailInput.value = contactoGuardado.email;
+    numPedidoInput.value = contactoGuardado.numPedido;
+    mensajeInput.value = contactoGuardado.mensaje;
+}
+
+console.log(datosGuardados)
